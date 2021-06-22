@@ -110,7 +110,6 @@ function App(props) {
 
   const tasksNoun = taskList.length > 1 ? 'tasks' : 'task';
   const word = filterColors.filter((item)=> item.key == filter)[0].word;
-  console.log(word);
   const headingText = `${taskList.length} ${tasksNoun} ${word}`;
 
   const listHeadingRef = useRef(null);
