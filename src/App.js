@@ -24,6 +24,7 @@ const FILTER_NAMES = Object.keys(FILTER_MAP);
 function App(props) {
   const [tasks, setTasks] = useState(props.tasks);
   const [filter, setFilter] = useState('All');
+  const [lastWord, setlastWord] = useState("Entried")
 
   function toggleTaskCompleted(id) {
     const updatedTasks = tasks.map(task => {
@@ -72,18 +73,32 @@ function App(props) {
     ));
 
   const filterColors = [
-    "#455A64",
-    "#F44336",
-    "#388E3C",
+    {
+      key: "All",
+      color: "#455A64",
+      word: "Entried"
+    },
+    {
+      key: "Active",
+      color: "#F44336",
+      word: "Remaining"
+    },
+    {
+      key: "Completed",
+      color: "#388E3C",
+      word: "Completed"
+    },
   ]
 
   const filterList = FILTER_NAMES.map((name, index) => (
     <FilterButton
       key={name}
       name={name}
-      color={filterColors[index]}
+      color={filterColors[index].color}
+      setlastWord = {filterColors[index].word}
       isPressed={name === filter}
       setFilter={setFilter}
+      setlastWord={setlastWord}
     />
   ));
 
@@ -93,8 +108,10 @@ function App(props) {
   }
 
 
-  const tasksNoun = taskList.length !== 1 ? 'tasks' : 'task';
-  const headingText = `${taskList.length} ${tasksNoun} remaining`;
+  const tasksNoun = taskList.length > 1 ? 'tasks' : 'task';
+  const word = filterColors.filter((item)=> item.key == filter)[0].word;
+  console.log(word);
+  const headingText = `${taskList.length} ${tasksNoun} ${word}`;
 
   const listHeadingRef = useRef(null);
   const prevTaskLength = usePrevious(tasks.length);
