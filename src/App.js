@@ -76,17 +76,17 @@ function App(props) {
     {
       key: "All",
       color: "#455A64",
-      word: "Entried"
+      word: "entried"
     },
     {
       key: "Active",
       color: "#F44336",
-      word: "Remaining"
+      word: "remaining"
     },
     {
       key: "Completed",
       color: "#388E3C",
-      word: "Completed"
+      word: "completed"
     },
   ]
 
